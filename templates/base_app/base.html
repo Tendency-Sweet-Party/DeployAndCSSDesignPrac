@@ -1,0 +1,55 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-language" content="ja">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    {% block meta_tag %}{% endblock %}
+    <link href="{% static 'css/semantic.css' %}" rel="stylesheet">
+    <link href="{% static 'css/my_custom.css' %}" rel="stylesheet">
+    {% block css %}{% endblock %}
+    <title>
+        {% block title %}デプロイとCSSデザインの練習{% endblock %}
+    </title>
+</head>
+<body class="Site">
+<header class="Site-header">
+    <div class="ui stackable inverted menu fixed blue">
+        <a href="{% url 'base:index' %}" class="header item">
+            デプロイとCSSデザインの練習
+        </a>
+        <a href="{% url 'base:index' %}" class="item">
+            ◆主人公◆のステータス
+        </a>
+        <div class="right menu">
+            <a class="item" href="{% url 'base:index' %}">トップに戻る</a>
+            <a class="item" href="{% url 'base:index' %}">このサイトについて</a>
+        </div>
+    </div>
+</header>
+
+<main class="Site-content">
+    <div class="ui container" style="min-height:100vh;">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+<footer class="Site-footer">
+    <div class="ui inverted stackable footer  fixed segment blue">
+        <div class="ui container center aligned">
+            <div class="ui horizontal inverted small divided link list">
+                <a class="item">© デプロイとCSSデザインの練習</a>
+                <a href="{% url 'base:index' %}" class="item"><i class="linkify icon"></i>著作権表示</a>
+                <a href="https://github.com/Tendency-Sweet-Party/DeployAndCSSDesignPrac" class="item"><i
+                        class="linkify icon"></i>ソースコード</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="{% static 'js/semantic.js' %}"></script>
+{% block js %}{% endblock %}
+</body>
