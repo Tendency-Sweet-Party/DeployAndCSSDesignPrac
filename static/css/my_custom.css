@@ -1,3 +1,69 @@
+@charset "UTF-8";
+
+/*font*/
+/*Google Font*/
+/*@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');*/
+
+/*Application Title*/
+.App_title {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 20px;
+    font-size-adjust: 0.5;
+    font-weight: bold;
+    color: #e5dfa1;
+}
+
+/*body background*/
+#Normal_body_background{
+    background-color: #eeeeee;
+}
+
+/*main content*/
+#Main {
+    margin-top: 50px;
+    /*perhaps it functions as override*/
+    width: 85%;
+}
+
+/*Arrows*/
+.Arrows_area {
+    height: 400px;
+    display: table;
+}
+
+.Arrows_child {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 20px;
+    font-size-adjust: 0.5;
+
+}
+
+/*summary area*/
+#Summary_box {
+    border: solid 2px black;
+    padding: 15px;
+    width: 90%;
+    height: 70%;
+    max-height: 800px;
+    /* 角を丸くする */
+    border-radius: 20px;
+    margin-top: 40px;
+    background-color: white;
+}
+
+/*text area*/
+#Normal_text_area{
+    padding: 30px;
+    background-color: white;
+    height: 800px;
+    width: 95%;
+
+}
+
+/*------Sticky Footer------*/
+/*https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/*/
 /*Copyright (c) 2015 Philip Walton*/
 
 /*Permission is hereby granted, free of charge, to any person*/
@@ -21,8 +87,6 @@
 /*FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR*/
 /*OTHER DEALINGS IN THE SOFTWARE.*/
 
-/*Sticky Footer*/
-/*https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/*/
 .Site {
     display: flex;
     min-height: 100vh;
@@ -31,6 +95,7 @@
 
 .Site-header {
     flex: none; /* 2 */
+    height: 20px;
 }
 
 .Site-footer {
@@ -53,7 +118,7 @@
     visibility: hidden;
 }
 
-/*End of Sticky Footer*/
+/*------End of Sticky Footer------*/
 
 
 /*semantic_uiのoverride*/

@@ -10,29 +10,66 @@
     <link href="{% static 'css/my_custom.css' %}" rel="stylesheet">
     {% block css %}{% endblock %}
     <title>
-        {% block title %}デプロイとCSSデザインの練習{% endblock %}
+        {% block title %}ショートストーリーをCSSデザインしてみよう{% endblock %}
     </title>
 </head>
-<body class="Site">
+<body id="Normal_body_background" class="Site">
 <header class="Site-header">
     <div class="ui stackable inverted menu fixed blue">
-        <a href="{% url 'base:index' %}" class="header item">
-            デプロイとCSSデザインの練習
+        <a href="{% url 'base:index' %}" class="header item ">
+            <span class="App_title">ショートストーリーをCSSデザインしてみよう</span>
         </a>
         <a href="{% url 'base:index' %}" class="item">
-            ◆主人公◆のステータス
+            <i class="icon star red"></i> {主人公}のステータス <i class="icon star red"></i>
         </a>
         <div class="right menu">
-            <a class="item" href="{% url 'base:index' %}">トップに戻る</a>
-            <a class="item" href="{% url 'base:index' %}">このサイトについて</a>
+            <a class="item" href="{% url 'base:index' %}"><i class="linkify icon"></i>トップに戻る</a>
+            <a class="item" href="{% url 'base:index' %}"><i class="linkify icon"></i>この作品について</a>
         </div>
     </div>
 </header>
 
 <main class="Site-content">
-    <div class="ui container" style="min-height:100vh;">
-        {% block content %}
-        {% endblock %}
+    <div id="Main" class="ui container">
+        {#サイドバー#}
+        <div class="ui grid stackable">
+            <div class="one wide column ">
+                <div class="Arrows_area">
+                    <a href="" class="Arrows_child"><i class="chevron circle left icon"></i>prev</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <div id="Summary_box">
+                    It's summary.長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト<br>
+                    It's summary.<br>
+                    It's summary.<br>
+                    It's summary.<br>
+                    {% block summary %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="ten wide column">
+                <div id="Normal_text_area">
+                    ここに文章が入ります。長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト長さのテスト<br><br>
+                    ここに文章が入ります。<br><br>
+                    ここに文章が入ります。<br><br>
+                    ここに文章が入ります。<br><br>
+                    ここに文章が入ります。<br><br>
+                    ここに文章が入ります。<br><br>
+                    ここに文章が入ります。<br><br>
+                    ここに文章が入ります。<br><br>
+                    ここに文章が入ります。<br><br>
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="one wide column ">
+                <div class="Arrows_area">
+                    <a href="" class="Arrows_child"><i class="chevron circle right icon"></i>next</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </main>
 
@@ -40,7 +77,7 @@
     <div class="ui inverted stackable footer  fixed segment blue">
         <div class="ui container center aligned">
             <div class="ui horizontal inverted small divided link list">
-                <a class="item">© デプロイとCSSデザインの練習</a>
+                <a class="item">© ショートストーリーをCSSデザインしてみよう</a>
                 <a href="{% url 'base:index' %}" class="item"><i class="linkify icon"></i>著作権表示</a>
                 <a href="https://github.com/Tendency-Sweet-Party/DeployAndCSSDesignPrac" class="item"><i
                         class="linkify icon"></i>ソースコード</a>
@@ -51,5 +88,13 @@
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="{% static 'js/semantic.js' %}"></script>
+<script>
+    //ヘッダーの高さ分だけコンテンツを下げる
+    $(function () {
+        const height = $(".Site-header").height();
+        //10pxだけ余裕をもたせる
+        $("body").css("margin-top", height + 10);
+    });
+</script>
 {% block js %}{% endblock %}
 </body>
