@@ -15,7 +15,7 @@
 }
 
 /*body background*/
-#Normal_body_background{
+#Normal_body_background {
     background-color: #eeeeee;
 }
 
@@ -54,11 +54,14 @@
 }
 
 /*text area*/
-#Normal_text_area{
+#Normal_text_area {
     padding: 30px;
     background-color: white;
     height: 800px;
     width: 95%;
+    border-right: solid 6px #aac5de;
+    border-bottom: solid 6px #aac5de;
+    border-radius: 9px;
 
 }
 
