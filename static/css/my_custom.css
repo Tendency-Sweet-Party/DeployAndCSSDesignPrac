@@ -19,12 +19,36 @@
     background-color: #eeeeee;
 }
 
+/*title content*/
+#Title {
+    margin-top: 50px;
+    padding: 1rem;
+    /*perhaps it functions as override*/
+    width: 85%;
+    text-align: center;
+}
+
 /*main content*/
 #Main {
     margin-top: 50px;
     /*perhaps it functions as override*/
     width: 85%;
 }
+
+/*content for site explanation*/
+#Explanation{
+    margin-top: 50px;
+    padding: 1rem;
+    /*perhaps it functions as override*/
+    width: 60%;
+    min-width: 10rem;
+    text-align: center;
+    border: double 5px #6DFFFF;
+    background-color: white;
+}
+/*#Explanation p{*/
+/*    color: #F3F4F5;*/
+/*}*/
 
 /*Arrows*/
 .Arrows_area {
@@ -47,7 +71,7 @@
     width: 90%;
     height: 70%;
     max-height: 800px;
-    /* 角を丸くする */
+    /* round the edge */
     border-radius: 20px;
     margin-top: 40px;
     background-color: white;
