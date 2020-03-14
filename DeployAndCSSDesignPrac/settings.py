@@ -55,8 +55,12 @@ INSTALLED_APPS = [
 
 ]
 
-# setting for site
+# setting for admin
 SITE_ID = 1
+# debug_bar arrowed ip
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
