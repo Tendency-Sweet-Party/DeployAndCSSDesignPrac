@@ -2,13 +2,13 @@
 
 /*font*/
 /*Google Font*/
-/*@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap');
 /*@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');*/
 
 /*Application Title*/
 .App_title {
     font-family: "Times New Roman", sans-serif;
-    font-size: 20px;
+    font-size: 1.6rem;
     font-size-adjust: 0.5;
     font-weight: bold;
     color: #e5dfa1;
@@ -28,6 +28,47 @@
     text-align: center;
 }
 
+#Title > h1 {
+    font-family: "M PLUS 1p", "Times New Roman", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    text-align: center;
+}
+
+#Title > h2 {
+    font-family: "M PLUS 1p", "Times New Roman", sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: rgba(151, 110, 129, 0.4);
+}
+
+#Title div.what_is_this {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    text-align: left;
+    line-height: 2.5rem;
+}
+
+
+#Title .ui.form {
+    width: 40%;
+    min-width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#Title .ui.form .field > label {
+    margin-bottom: 4rem;
+    text-align: left;
+}
+
+.initial_setting_control {
+
+}
+
+
 /*main content*/
 #Main {
     margin-top: 50px;
@@ -36,7 +77,7 @@
 }
 
 /*content for site explanation*/
-#Explanation{
+#Explanation {
     margin-top: 50px;
     padding: 1rem;
     /*perhaps it functions as override*/
@@ -46,6 +87,7 @@
     border: double 5px #6DFFFF;
     background-color: white;
 }
+
 /*#Explanation p{*/
 /*    color: #F3F4F5;*/
 /*}*/
@@ -128,6 +170,8 @@
 .Site-footer {
     position: sticky;
     flex: none; /* 2 */
+    /*my customization*/
+    margin-top: 5rem;
 }
 
 .Site-content {
@@ -152,4 +196,15 @@
 /*型具体化*/
 div.ui.divided.horizontal.list > .item:not(:last-child) {
     padding-right: 5em;
+}
+
+/*general component setting*/
+fieldset {
+    border: 0;
+}
+
+.text_emphasize {
+    font-size: 120%;
+    border-bottom: solid 3px #E6A200;
+    margin: 0 0.5rem 0 0.5rem;
 }

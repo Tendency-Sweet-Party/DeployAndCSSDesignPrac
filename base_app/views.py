@@ -7,3 +7,8 @@ from base_app.forms import InitialSettingForm
 class InitialSettingView(FormView):
     template_name = 'base_app/initial_setting.html'
     form_class = InitialSettingForm
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['setting_component'] = ctx.pop('form')
+        return ctx
