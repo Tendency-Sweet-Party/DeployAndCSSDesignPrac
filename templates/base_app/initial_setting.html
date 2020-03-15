@@ -1,20 +1,13 @@
 {% extends 'base_app/base.html' %}
 {% block title %}タイトル - {{ block.super }}{% endblock %}
 {% block content %}
-    {#    todo delete#}
-    {#    <div>#}
-    {#        <form action="" href="">#}
-    {#                {{ form.as_p }}#}
-    {#        </form>#}
-    {#    </div>#}
-
     <div id="Title" class="ui container">
         <h1>ショートストーリーをCSSデザインしてみよう</h1>
         {#        todo タイトル#}
         <h2>──ここにタイトルを入れる──</h2>
         <div class="ui stackable grid">
-            <div class="four wide column"></div>
-            <div class="eight wide column what_is_this">
+            <div class="five wide column"></div>
+            <div class="six wide column what_is_this">
                 <ul>
                     <li>
                         自作のショートストーリーにCSSのデザインをつける練習です。
@@ -24,9 +17,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="four wide column"></div>
+            <div class="five wide column"></div>
         </div>
-        <form class="ui form" action="">
+        <form class="ui form" action="" method="POST">
             <fieldset>
                 {% csrf_token %}
                 {% for field in setting_component %}
@@ -38,7 +31,7 @@
                         <p style="color: red;">{{ error }}</p>
                     {% endfor %}
                 {% endfor %}
-                <button type="submit" class="ui blue button " name="next" value="confirm">Create a Story.</button>
+                <button type="submit" class="ui blue button " name="next" value="create">Create a Story.</button>
             </fieldset>
         </form>
     </div>

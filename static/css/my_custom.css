@@ -3,9 +3,10 @@
 /*font*/
 /*Google Font*/
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap');
+/*Might use*/
 /*@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');*/
 
-/*Application Title*/
+/*application Title*/
 .App_title {
     font-family: "Times New Roman", sans-serif;
     font-size: 1.6rem;
