@@ -19,10 +19,19 @@
         <a href="{% url 'base:index' %}" class="header item ">
             <span class="App_title">ショートストーリーをCSSデザインしてみよう</span>
         </a>
-        <a href="{% url 'base:index' %}" class="item">
-            <i class="icon star red"></i> {主人公}のステータス <i class="icon star red"></i>
-        </a>
+        {% if data.main_character_name %}
+            <a href="{% url 'base:index' %}" class="item">
+                <i class="icon star"></i>
+                {{ data.main_character_name }}のステータス
+            </a>
+        {% endif %}
         <div class="right menu">
+            {% if data.main_character_name %}
+                <a href="javascript:void(0)" onclick="confirmResetSession()" class="item">
+                    <i class="icon exclamation"></i>
+                    リセットしてトップに戻る
+                </a>
+            {% endif %}
             <a class="item" href="{% url 'base:title' %}"><i class="linkify icon"></i>トップに戻る</a>
             <a class="item" href="{% url 'base:index' %}"><i class="linkify icon"></i>この作品について</a>
         </div>
@@ -55,6 +64,15 @@
         //10pxだけ余裕をもたせる
         $("body").css("margin-top", height + 10);
     });
+
+    //画面遷移時の警告
+    function confirmResetSession() {
+        if (confirm('リセットしてトップに戻ります。\nよろしいですか。')) {
+            //クエリパラメータにresetを格納し遷移
+            window.location.href = "{% url 'base:title' %}?reset=True";
+        }
+        return false;
+    }
 </script>
 {% block js %}{% endblock %}
 </body>

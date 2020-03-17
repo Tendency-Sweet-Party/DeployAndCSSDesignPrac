@@ -209,3 +209,7 @@ fieldset {
     border-bottom: solid 3px #E6A200;
     margin: 0 0.5rem 0 0.5rem;
 }
+
+.text_center {
+    text-align: center;
+}

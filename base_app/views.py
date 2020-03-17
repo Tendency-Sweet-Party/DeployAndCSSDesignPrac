@@ -12,6 +12,13 @@ class InitialSettingView(FormView):
     template_name = 'base_app/initial_setting.html'
     form_class = InitialSettingForm
 
+    def get(self, request, *args, **kwargs):
+        is_reset = request.GET.get('reset')
+        # セッション削除
+        if is_reset == 'True':
+            request.session.clear()
+        return super().get(self, request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         if request.POST.get('next', '') == 'create':
             form = InitialSettingForm(request.POST)
@@ -57,7 +64,7 @@ def page_create(request, page_num):
         'state_of_progress': request.session['initial_setting_data']['state_of_progress'],
     }
     ctx = {'data': data}
-    # template先を編集
+    # template名を編集
     template_name = 'common_part_' + str(page_num) + '.html'
 
     try:
