@@ -23,9 +23,11 @@
 #Normal_body_background {
     background-color: #eeeeee;
 }
+
 #Bad_end_body_background {
     background-color: #2a2c54;
 }
+
 /**********************************/
 
 /**********************************/
@@ -97,6 +99,7 @@
     /*perhaps it functions as override*/
     width: 85%;
 }
+
 /**********************************/
 
 /**********************************/
@@ -169,13 +172,13 @@
 /*summary area*/
 #Summary_box {
     border: solid 2px black;
+    margin-top: 6rem;
     padding: 4rem 2rem 2rem 2rem;
     width: 90%;
-    height: 70%;
-    max-height: 800px;
+    min-height: 70%;
+    overflow: auto;
     /* round the edge */
     border-radius: 20px;
-    margin-top: 6rem;
     background-color: white;
 }
 
@@ -186,12 +189,24 @@
 #Normal_text_area {
     padding: 4rem 8rem 4rem 8rem;
     background-color: white;
-    height: 800px;
+    min-height: 800px;
     width: 95%;
+    overflow: auto;
     border-right: solid 6px #aac5de;
     border-bottom: solid 6px #aac5de;
     border-radius: 9px;
 
+}
+
+#Normal_text_area h1, h2, h3, p {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+#Normal_text_area .transition_link {
+    font-size: 150%;
+    /*todo 調整*/
+    /*border-bottom: 2px dotted #020402;*/
 }
 
 /**********************************/
@@ -260,9 +275,17 @@
 
 /**********************************/
 /*semantic_uiのoverride*/
-/*型具体化*/
+/*型の具体化によるoverride*/
 div.ui.divided.horizontal.list > .item:not(:last-child) {
     padding-right: 5em;
+}
+
+div.ui.blue.fixed.menu {
+    overflow: auto;
+}
+
+div.ui.inverted.stackable.vertical.footer.fixed.blue.segment {
+    overflow: auto;
 }
 
 /**********************************/

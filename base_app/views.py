@@ -49,46 +49,6 @@ class InitialSettingView(FormView):
         return ctx
 
 
-def page_create(request, page_num):
-    if not page_num:
-        return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
-    elif 'initial_setting_data' not in request.session:
-        return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
-    elif request.session['initial_setting_data']['state_of_progress'] < (page_num - 1):
-        return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
-
-    # セッションの編集
-    # ルートの初期化
-    if request.session['initial_setting_data']['route_flag'] != '':
-        request.session['initial_setting_data']['route_flag'] = ''
-    # 次に進んだ場合は進行度を増やす
-    if request.session['initial_setting_data']['state_of_progress'] < page_num:
-        request.session['initial_setting_data']['state_of_progress'] = page_num
-
-    # contextを作成
-    data = {
-        'main_character_name': request.session['initial_setting_data']['main_character_name'],
-        'special_move': request.session['initial_setting_data']['special_move'],
-        'job_after': request.session['initial_setting_data']['job_after'],
-        'state_of_progress': request.session['initial_setting_data']['state_of_progress'],
-    }
-    ctx = {'data': data}
-    # template名を編集
-    template_name = 'common_part_' + str(page_num) + '.html'
-
-    page_exist = True
-    try:
-        return render(request, 'base_app/text_part/' + template_name, ctx)
-    except TemplateDoesNotExist:
-        page_exist = False
-        raise Http404(ANNOUNCE_FOR_NOT_FOUND)
-    finally:
-        if page_exist:
-            # 変更を確定　
-            # ※ https://djangoproject.jp/doc/ja/1.0/topics/http/sessions.html#id11
-            request.session.modified = True
-
-
 class StatusView(TemplateView):
     template_name = 'base_app/status_part/status.html'
 
@@ -128,9 +88,46 @@ class StatusView(TemplateView):
         return self.render_to_response(ctx)
 
 
+def page_create(request, page_num):
+    if not page_num:
+        return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
+    elif 'initial_setting_data' not in request.session:
+        return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
+    elif request.session['initial_setting_data']['state_of_progress'] < (page_num - 1):
+        return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
+
+    # セッションの編集
+    # ルートの初期化
+    if request.session['initial_setting_data']['route_flag'] != '':
+        request.session['initial_setting_data']['route_flag'] = ''
+    # 進行度を調整
+    request.session['initial_setting_data']['state_of_progress'] = page_num
+
+    # contextを作成
+    data = {
+        'main_character_name': request.session['initial_setting_data']['main_character_name'],
+        'special_move': request.session['initial_setting_data']['special_move'],
+        'job_after': request.session['initial_setting_data']['job_after'],
+        'state_of_progress': request.session['initial_setting_data']['state_of_progress'],
+    }
+    ctx = {'data': data}
+    # template名を編集
+    template_name = 'common_part_' + str(page_num) + '.html'
+
+    page_exist = True
+    try:
+        return render(request, 'base_app/text_part/' + template_name, ctx)
+    except TemplateDoesNotExist:
+        page_exist = False
+        raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+    finally:
+        if page_exist:
+            # 変更を確定　
+            # ※ https://djangoproject.jp/doc/ja/1.0/topics/http/sessions.html#id11
+            request.session.modified = True
+
+
 def bad_end_page_create(request, bad_end_name):
-    # todo del
-    # bad_end_name = request.GET.get('bad_end_name')
     if not bad_end_name:
         raise Http404(ANNOUNCE_FOR_NOT_FOUND)
     if 'initial_setting_data' not in request.session:
