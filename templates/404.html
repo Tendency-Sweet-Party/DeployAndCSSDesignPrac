@@ -1,0 +1,10 @@
+{% extends 'base_app/base.html' %}
+{% block title %}404 Not Found - {{ block.super }}{% endblock %}
+{% block content %}
+    <div style="font-size: 4rem">
+        <p>404 Not Found</p>
+        {% if exception %}
+            <p>{{ exception }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

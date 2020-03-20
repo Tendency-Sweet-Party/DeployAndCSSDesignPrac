@@ -1,0 +1,18 @@
+{% extends 'base_app/text_part/text_page_base.html' %}
+{% block title %}1ページ - {{ block.super }}{% endblock %}
+{% block summary %}
+    {{ data.main_character_name }}<br>
+    {{ data }}
+{% endblock %}
+{% block text_content %}
+    <h1 class="text_center">サブタイトル_2</h1>
+    <p>かきくけこ</p>
+    <p class="text_center"><span class=" text_emphasize"><a href="">★ステータスを確認する★</a></span></p>
+    <div class="text_center">
+        <p>次に進むために選択肢を選んでください。</p>
+        <div class="ui ordered list">
+            <a class="item" href="{% url 'base:content_pages' page_num='3' %}">Aをする。</a>
+            <a class="item">Bをする。</a>
+        </div>
+    </div>
+{% endblock %}

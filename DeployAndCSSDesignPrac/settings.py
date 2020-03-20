@@ -33,7 +33,7 @@ except:
 if 'DESKTOP-5IGTA37' in HOSTNAME:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['*', ]
 else:
     DEBUG = False
     ALLOWED_HOSTS = ['*', ]

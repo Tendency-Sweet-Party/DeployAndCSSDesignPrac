@@ -7,6 +7,6 @@
 {% block text_content %}
     <h1 class="text_center">サブタイトル_1</h1>
     <p>あいうえお</p>
-    <p class="text_center"><span class=" text_emphasize">◆ステータスを確認する◆</span></p>
-    <p class="text_center"><a href="">次に進む</a></p>
+    <p class="text_center"><span class=" text_emphasize"><a href="">◆ステータスを確認する◆</a></span></p>
+    <p class="text_center"><a href="{% url 'base:content_pages' page_num='2' %}">次に進む</a></p>
 {% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base_app/base.html' %}
+{% block title %}ステータス - {{ block.super }}{% endblock %}
+{% block header %}
+    {#    vacant#}
+{% endblock %}
+{% block content %}
+    <div id="Status" class="ui container">
+        <div>
+            <table class="ui celled striped olive table">
+                <thead>
+                <tr>
+                    <th colspan="2" class="text_emphasize">
+                        <i class="user outline icon"></i> {{ data.main_character_name }}のステータス
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="">
+                        <i class="gamepad icon"></i> 体力
+                    </td>
+                    <td>{{ status_data.HP }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="gamepad icon"></i> 攻撃力
+                    </td>
+                    <td>{{ status_data.ATK }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="gamepad icon"></i> 防御力
+                    </td>
+                    <td>{{ status_data.DEF }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="gamepad icon"></i> 魔法力
+                    </td>
+                    <td>{{ status_data.MGK }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="gamepad icon"></i> 素早さ
+                    </td>
+                    <td>{{ status_data.SPD }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        装備
+                    </td>
+                    <td>
+                        {% for equipment in  status_data.equipment %}
+                            {{ equipment }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        スキル
+                    </td>
+                    <td>
+                        {% for skill in  status_data.skill %}
+                            {{ skill }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        状態異常
+                    </td>
+                    <td>
+                        {% for abnormal_state in  status_data.abnormal_state %}
+                            {{ abnormal_state }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="status_window">
+            {{ status_data.explanation  | linebreaksbr }}
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {#    vacant#}
+{% endblock %}

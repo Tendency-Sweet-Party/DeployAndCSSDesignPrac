@@ -14,55 +14,60 @@
     </title>
 </head>
 <body id="Normal_body_background" class="Site">
-<header class="Site-header">
-    <div class="ui stackable inverted menu fixed blue">
-        <a href="{% url 'base:index' %}" class="header item ">
-            <span class="App_title">ショートストーリーをCSSデザインしてみよう</span>
-        </a>
-        {% if data.main_character_name %}
-            <a href="{% url 'base:index' %}" class="item">
-                <i class="icon star"></i>
-                {{ data.main_character_name }}のステータス
+{% block header %}
+    <header class="Site-header">
+        <div class="ui stackable inverted menu fixed blue">
+            <a href="{% url 'base:index' %}" class="header item ">
+                <span class="App_title">ショートストーリーをCSSデザインしてみよう</span>
             </a>
-        {% endif %}
-        <div class="right menu">
             {% if data.main_character_name %}
-                <a href="javascript:void(0)" onclick="confirmResetSession()" class="item">
-                    <i class="icon exclamation"></i>
-                    リセットしてトップに戻る
+                <a href="{% url 'base:status' %}" class="item" target="_blank" rel="noopener noreferrer">
+                    <i class="icon star"></i>
+                    {{ data.main_character_name }}のステータス
                 </a>
             {% endif %}
-            <a class="item" href="{% url 'base:title' %}"><i class="linkify icon"></i>トップに戻る</a>
-            <a class="item" href="{% url 'base:index' %}"><i class="linkify icon"></i>この作品について</a>
+            <div class="right menu">
+                {% if data.main_character_name %}
+                    <a href="javascript:void(0)" onclick="confirmResetSession()" class="item">
+                        <i class="icon exclamation"></i>
+                        リセットしてトップに戻る
+                    </a>
+                {% endif %}
+                <a class="item" href="{% url 'base:title' %}"><i class="linkify icon"></i>トップに戻る</a>
+                <a class="item bottom_item" href="{% url 'base:index' %}"><i class="linkify icon"></i>この作品について</a>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+{% endblock %}
 
 <main class="Site-content">
     {% block content %}{% endblock %}
 </main>
 
-<footer class="Site-footer">
-    <div class="ui inverted stackable footer  fixed segment blue">
-        <div class="ui container center aligned">
-            <div class="ui horizontal inverted small divided link list">
-                <a class="item">© ショートストーリーをCSSデザインしてみよう</a>
-                <a href="{% url 'base:quote' %}" class="item"><i class="linkify icon"></i>引用元・参考元</a>
-                <a href="https://github.com/Tendency-Sweet-Party/DeployAndCSSDesignPrac" class="item"><i
-                        class="linkify icon"></i>ソースコード</a>
+{% block footer %}
+    <footer class="Site-footer">
+        <div class="ui inverted stackable vertical  footer  fixed segment blue">
+            <div class="ui container center aligned">
+                <div class="ui horizontal inverted small divided link list">
+                    <a class="item">© ショートストーリーをCSSデザインしてみよう</a>
+                    <a href="{% url 'base:quote' %}" class="item"><i class="linkify icon"></i>引用元・参考元</a>
+                    <a href="https://github.com/Tendency-Sweet-Party/DeployAndCSSDesignPrac" class="item"><i
+                            class="linkify icon"></i>ソースコード</a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+{% endblock %}
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="{% static 'js/semantic.js' %}"></script>
 <script>
     //ヘッダーの高さ分だけコンテンツを下げる
     $(function () {
-        const height = $(".Site-header").height();
+        const height = $(".ui.stackable.inverted.menu.fixed.blue").height();
+        console.log(height);
         //10pxだけ余裕をもたせる
-        $("body").css("margin-top", height + 10);
+        $("main").css("margin-top", height + 10);
     });
 
     //画面遷移時の警告
