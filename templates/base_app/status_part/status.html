@@ -17,31 +17,31 @@
                 <tbody>
                 <tr>
                     <td class="">
-                        <i class="gamepad icon"></i> 体力
+                        <i class="{{ status_data.changed | yesno:'heart pink icon,gamepad icon' }}"></i> 体力
                     </td>
                     <td>{{ status_data.HP }}</td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="gamepad icon"></i> 攻撃力
+                        <i class="{{ status_data.changed | yesno:'heart pink icon,gamepad icon' }}"></i> 攻撃力
                     </td>
                     <td>{{ status_data.ATK }}</td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="gamepad icon"></i> 防御力
+                        <i class="{{ status_data.changed | yesno:'heart pink icon,gamepad icon' }}"></i> 防御力
                     </td>
                     <td>{{ status_data.DEF }}</td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="gamepad icon"></i> 魔法力
+                        <i class="{{ status_data.changed | yesno:'heart pink icon,gamepad icon' }}"></i> 魔法力
                     </td>
                     <td>{{ status_data.MGK }}</td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="gamepad icon"></i> 素早さ
+                        <i class="{{ status_data.changed | yesno:'heart pink icon,gamepad icon' }}"></i> 素早さ
                     </td>
                     <td>{{ status_data.SPD }}</td>
                 </tr>
@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         {% for equipment in  status_data.equipment %}
-                            {{ equipment }}<br>
+                            {{ equipment | linebreaksbr }}<br>
                         {% endfor %}
                     </td>
                 </tr>
@@ -61,7 +61,7 @@
                     </td>
                     <td>
                         {% for skill in  status_data.skill %}
-                            {{ skill }}<br>
+                            {{ skill | linebreaksbr }}<br>
                         {% endfor %}
                     </td>
                 </tr>
@@ -71,7 +71,7 @@
                     </td>
                     <td>
                         {% for abnormal_state in  status_data.abnormal_state %}
-                            {{ abnormal_state }}<br>
+                            {{ abnormal_state | linebreaksbr }}<br>
                         {% endfor %}
                     </td>
                 </tr>

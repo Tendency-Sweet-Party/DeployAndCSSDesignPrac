@@ -1,0 +1,31 @@
+{% extends 'base_app/bad_end_base.html' %}
+{% block content %}
+    <div id="Main" class="ui container">
+        {#サイドバー#}
+        <div class="ui grid stackable">
+            <div class="one wide column ">
+                <div class="Arrows_area">
+                    <a href="javascript:history.back()" class="Arrows_child"><i class="chevron circle left icon"></i>prev</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <div id="Summary_box">
+                    {% block summary %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="ten wide column">
+                <div id="Normal_text_area">
+                    {% block text_content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="one wide column ">
+                <div class="Arrows_area">
+                    <a href="javascript:history.forward()" class="Arrows_child"><i
+                            class="chevron circle right icon"></i>next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

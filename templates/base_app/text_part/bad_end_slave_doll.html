@@ -1,0 +1,13 @@
+{% extends 'base_app/text_part/bad_end_page_base.html' %}
+{% block title %}1ページ - {{ block.super }}{% endblock %}
+{% block summary %}
+    {{ data.main_character_name }}<br>
+    {{ data }}<br>
+    {{ bad_end_detail }}
+{% endblock %}
+{% block text_content %}
+    <h1 class="text_center">サブタイトル_slave_doll</h1>
+    <p>あいうえお</p>
+    <p class="text_center"><span class=" text_emphasize"><a href="">◆ステータスを確認する◆</a></span></p>
+    <p class="text_center"><a href="{% url 'base:content_pages' page_num='2' %}">次に進む</a></p>
+{% endblock %}

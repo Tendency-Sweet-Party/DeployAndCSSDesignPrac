@@ -5,8 +5,8 @@ DEFAULT_FAVORITE_WEAPON = '光の剣'
 JOB_CHOICE = (
     ('', '-' * 10),
     ('princess', "プリンセス"),
-    ('bunny', "バニーガール"),
-    ('sex_doll', "セックスドール"),
+    # ('bunny', "バニーガール"),
+    # ('sex_doll', "セックスドール"),
 )
 
 

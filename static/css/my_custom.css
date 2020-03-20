@@ -6,6 +6,7 @@
 /*Might use*/
 /*@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');*/
 
+/**********************************/
 /*application Title*/
 .App_title {
     font-family: "Times New Roman", sans-serif;
@@ -15,11 +16,19 @@
     color: #e5dfa1;
 }
 
+/**********************************/
+
+/**********************************/
 /*body background*/
 #Normal_body_background {
     background-color: #eeeeee;
 }
+#Bad_end_body_background {
+    background-color: #2a2c54;
+}
+/**********************************/
 
+/**********************************/
 /*title content*/
 #Title {
     margin-top: 50px;
@@ -41,7 +50,7 @@
     font-family: "M PLUS 1p", "Times New Roman", sans-serif;
     font-weight: 400;
     font-size: 1.5rem;
-    color: rgba(151, 110, 129, 0.4);
+    color: rgba(242, 114, 36, 0.4);
 }
 
 #Title div.what_is_this {
@@ -69,7 +78,9 @@
 
 }
 
+/**********************************/
 
+/**********************************/
 /*main content*/
 #Main {
     margin-top: 50px;
@@ -77,6 +88,18 @@
     width: 85%;
 }
 
+/**********************************/
+
+/**********************************/
+/*bad end main content*/
+#BE_Main {
+    margin-top: 50px;
+    /*perhaps it functions as override*/
+    width: 85%;
+}
+/**********************************/
+
+/**********************************/
 /*site explanation content*/
 #Explanation {
     margin-top: 50px;
@@ -89,6 +112,9 @@
     background-color: white;
 }
 
+/**********************************/
+
+/**********************************/
 /*status content*/
 #Status {
     margin-top: 3.5rem;
@@ -117,8 +143,12 @@
     border-width: 2px;
     border-style: double;
     background-color: #e6d1c1;
+    text-align: left;
 }
 
+/**********************************/
+
+/**********************************/
 /*Arrows*/
 .Arrows_area {
     height: 400px;
@@ -133,6 +163,9 @@
 
 }
 
+/**********************************/
+
+/**********************************/
 /*summary area*/
 #Summary_box {
     border: solid 2px black;
@@ -146,6 +179,9 @@
     background-color: white;
 }
 
+/**********************************/
+
+/**********************************/
 /*text area*/
 #Normal_text_area {
     padding: 4rem 8rem 4rem 8rem;
@@ -158,6 +194,9 @@
 
 }
 
+/**********************************/
+
+/**********************************/
 /*------Sticky Footer------*/
 /*https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/*/
 /*Copyright (c) 2015 Philip Walton*/
@@ -217,14 +256,18 @@
 }
 
 /*------End of Sticky Footer------*/
+/**********************************/
 
-
+/**********************************/
 /*semantic_uiのoverride*/
 /*型具体化*/
 div.ui.divided.horizontal.list > .item:not(:last-child) {
     padding-right: 5em;
 }
 
+/**********************************/
+
+/**********************************/
 /*general component setting*/
 fieldset {
     border: 0;
@@ -239,3 +282,6 @@ fieldset {
 .text_center {
     text-align: center;
 }
+
+
+/**********************************/

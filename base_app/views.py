@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.defaults import permission_denied
 from django.views.generic import FormView, TemplateView
 
-from base_app.const import status_dict
+from base_app.const import status_dict, bad_end_detail_dict
 from base_app.forms import InitialSettingForm
 
 ANNOUNCE_FOR_FORBIDDEN_PAGE = 'このページはまだ開けません。'
@@ -34,6 +34,7 @@ class InitialSettingView(FormView):
                     'job_after': form.cleaned_data['job_after'],
                     'state_of_progress': 0,
                     'route_flag': '',
+                    'route_progress': 0,
                 }
                 request.session['initial_setting_data'] = initial_setting_data
                 return redirect(reverse('base:content_pages', kwargs={'page_num': 1, }))
@@ -56,6 +57,10 @@ def page_create(request, page_num):
     elif request.session['initial_setting_data']['state_of_progress'] < (page_num - 1):
         return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
 
+    # セッションの編集
+    # ルートの初期化
+    if request.session['initial_setting_data']['route_flag'] != '':
+        request.session['initial_setting_data']['route_flag'] = ''
     # 次に進んだ場合は進行度を増やす
     if request.session['initial_setting_data']['state_of_progress'] < page_num:
         request.session['initial_setting_data']['state_of_progress'] = page_num
@@ -92,18 +97,25 @@ class StatusView(TemplateView):
         if not request.session['initial_setting_data']:
             raise Http404(ANNOUNCE_FOR_NOT_FOUND)
         if request.session['initial_setting_data']['route_flag'] != '':
-            raise Http404(ANNOUNCE_FOR_NOT_FOUND)
-        if str(request.session['initial_setting_data']['state_of_progress']) not in status_dict:
-            raise Http404(ANNOUNCE_FOR_NOT_FOUND)
-
-        # ステータスデータ取得
-        status_data = status_dict[
-            str(request.session['initial_setting_data']['state_of_progress'])
-        ]
-        # 得意技を取得
-        if request.session['initial_setting_data']['special_move']:
-            if request.session['initial_setting_data']['special_move'] not in status_data['skill']:
-                status_data['skill'].insert(0, request.session['initial_setting_data']['special_move'])
+            if request.session['initial_setting_data']['route_flag'] not in status_dict:
+                raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+            route_flg = request.session['initial_setting_data']['route_flag']
+            if str(request.session['initial_setting_data']['route_progress']) not in status_dict[route_flg]:
+                raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+            route_progress = str(request.session['initial_setting_data']['route_progress'])
+            # ステータスデータ取得
+            status_data = status_dict[route_flg][route_progress]
+        else:
+            if str(request.session['initial_setting_data']['state_of_progress']) not in status_dict:
+                raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+            # ステータスデータ取得
+            status_data = status_dict[
+                str(request.session['initial_setting_data']['state_of_progress'])
+            ]
+            # 得意技を取得
+            if request.session['initial_setting_data']['special_move']:
+                if request.session['initial_setting_data']['special_move'] not in status_data['skill']:
+                    status_data['skill'].insert(0, request.session['initial_setting_data']['special_move'])
 
         ctx['status_data'] = status_data
         # contextを追加
@@ -114,3 +126,58 @@ class StatusView(TemplateView):
         }
         ctx['data'] = data
         return self.render_to_response(ctx)
+
+
+def bad_end_page_create(request, bad_end_name):
+    # todo del
+    # bad_end_name = request.GET.get('bad_end_name')
+    if not bad_end_name:
+        raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+    if 'initial_setting_data' not in request.session:
+        return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
+    if bad_end_name not in bad_end_detail_dict:
+        raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+
+    bad_end_detail = bad_end_detail_dict[bad_end_name]
+
+    if 'route_flag' not in bad_end_detail:
+        raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+
+    # 表示許可のチェック
+    if not bad_end_detail['route_flag'] != '' and 'min_route_progress' in bad_end_detail:
+        if request.session['initial_setting_data']['route_progress'] < bad_end_detail['min_route_progress']:
+            return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
+    else:
+        if not bad_end_detail['min_state_of_progress']:
+            raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+        if request.session['initial_setting_data']['state_of_progress'] < bad_end_detail['min_state_of_progress']:
+            return permission_denied(request, ANNOUNCE_FOR_FORBIDDEN_PAGE)
+
+    # セッションの編集
+    if request.session['initial_setting_data']['route_flag'] == '':
+        request.session['initial_setting_data']['route_flag'] = bad_end_name
+
+    # contextを作成
+    data = {
+        'main_character_name': request.session['initial_setting_data']['main_character_name'],
+        'special_move': request.session['initial_setting_data']['special_move'],
+        'job_after': request.session['initial_setting_data']['job_after'],
+        'state_of_progress': request.session['initial_setting_data']['state_of_progress'],
+        'route_flag': request.session['initial_setting_data']['route_flag'],
+        'route_progress': request.session['initial_setting_data']['route_progress'],
+    }
+    ctx = {'data': data, 'bad_end_detail': bad_end_detail}
+    # template名を編集
+    template_name = 'bad_end_' + bad_end_name + '.html'
+
+    page_exist = True
+    try:
+        return render(request, 'base_app/text_part/' + template_name, ctx)
+    except TemplateDoesNotExist:
+        page_exist = False
+        raise Http404(ANNOUNCE_FOR_NOT_FOUND)
+    finally:
+        if page_exist:
+            # 変更を確定　
+            # ※ https://djangoproject.jp/doc/ja/1.0/topics/http/sessions.html#id11
+            request.session.modified = True

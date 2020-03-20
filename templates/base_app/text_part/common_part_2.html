@@ -1,5 +1,5 @@
 {% extends 'base_app/text_part/text_page_base.html' %}
-{% block title %}1ページ - {{ block.super }}{% endblock %}
+{% block title %}2ページ - {{ block.super }}{% endblock %}
 {% block summary %}
     {{ data.main_character_name }}<br>
     {{ data }}
@@ -12,7 +12,7 @@
         <p>次に進むために選択肢を選んでください。</p>
         <div class="ui ordered list">
             <a class="item" href="{% url 'base:content_pages' page_num='3' %}">Aをする。</a>
-            <a class="item">Bをする。</a>
+            <a class="item" href="{% url 'base:bad_end_pages' bad_end_name='slave_doll' %}">Bをする。</a>
         </div>
     </div>
 {% endblock %}
