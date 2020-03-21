@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.template import TemplateDoesNotExist
@@ -54,22 +56,24 @@ class StatusView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         ctx = super(StatusView, self).get_context_data(**kwargs)
+        # ※　deepcopyでなくcopy()だと下階層のdictの参照が引き継がれてしまっていた
+        my_status_dict = deepcopy(status_dict)
         if not request.session['initial_setting_data']:
             raise Http404(ANNOUNCE_FOR_NOT_FOUND)
         if request.session['initial_setting_data']['route_flag'] != '':
-            if request.session['initial_setting_data']['route_flag'] not in status_dict:
+            if request.session['initial_setting_data']['route_flag'] not in my_status_dict:
                 raise Http404(ANNOUNCE_FOR_NOT_FOUND)
             route_flg = request.session['initial_setting_data']['route_flag']
-            if str(request.session['initial_setting_data']['route_progress']) not in status_dict[route_flg]:
+            if str(request.session['initial_setting_data']['route_progress']) not in my_status_dict[route_flg]:
                 raise Http404(ANNOUNCE_FOR_NOT_FOUND)
             route_progress = str(request.session['initial_setting_data']['route_progress'])
             # ステータスデータ取得
-            status_data = status_dict[route_flg][route_progress]
+            status_data = my_status_dict[route_flg][route_progress]
         else:
-            if str(request.session['initial_setting_data']['state_of_progress']) not in status_dict:
+            if str(request.session['initial_setting_data']['state_of_progress']) not in my_status_dict:
                 raise Http404(ANNOUNCE_FOR_NOT_FOUND)
             # ステータスデータ取得
-            status_data = status_dict[
+            status_data = my_status_dict[
                 str(request.session['initial_setting_data']['state_of_progress'])
             ]
             # 得意技を取得

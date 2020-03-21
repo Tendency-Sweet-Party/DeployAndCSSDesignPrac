@@ -1,18 +1,52 @@
 {% extends 'base_app/text_part/text_page_base.html' %}
 {% block title %}1ページ - {{ block.super }}{% endblock %}
 {% block summary %}
-    {{ data.main_character_name }}<br>
-    {{ data }}
+    {{ block.super }}
+    窮地に立たされた{{ data.main_character_name }}。
+    <br><br>
+    魔道士の残酷な呪文が迫る。
 {% endblock %}
 {% block text_content %}
-    <h1 class="text_center">サブタイトル_3</h1>
-    <p>さしすせそ</p>
-    <p class="text_center"><span class=" text_emphasize"><a href="">★ステータスを確認する★</a></span></p>
-    <div class="text_center">
-        <p>次に進むために選択肢を選んでください。</p>
-        <div class="ui ordered list">
-            <a class="item" href="">Aをする。</a>
-            <a class="item">Bをする。</a>
-        </div>
+    <div>
+        <h1 class="text_center">『可愛らしい存在に』</h1>
+        <hr>
+        <br>
+        <br>
+        　「お前みたいな邪悪な魔道士の言葉になんて、屈するか！！」<br/>
+        <br/>
+        　萎えそうになる闘志を奮い立たせ、$_1はキッと魔道士を睨みつけた。<br/>
+        　とはいえ、どうしようもない状況には変わりがなかった。<br/>
+        　剣術を基本とした戦闘能力は、魔道士の呪いによって恐ろしく落とされてしまっている。<br/>
+        （おそらく魔法を撃とうとしても、さっきのラブリィ$_h$_2アタックのように（$_1は思い出すだけで顔が赤くなった）無力化された恥ずかしい物が出てくるだけだろう）<br/>
+        （くそ……どうすればいいんだ……ちくしょう！）<br/>
+        <br/>
+        　$_1が行動を起こしあぐねていると、魔道士はつかつかと歩み寄って、感心したように彼を見た。<br/>
+        「なるほど。まだまだ男の心は元気なようだね。君みたいないきの良い子は好きだよ、わたしは。<br/>
+        ……そこでだ。わたしは今から君をもっと可愛らしい存在に変えてしまおうと思う」<br/>
+        <br/>
+        「本気で言っているのか？」<br/>
+        　信じられない目で$_1は魔道士を見た。<br/>
+        　可愛い存在に変える？　どうやって？<br/>
+        　<br/>
+        　だが、魔道士の目は本気だった。<br/>
+        　<br/>
+        　魔道士の杖に、先程とは比べ物にならないほどのピンク色の光が集まっているのを見て、$_1は息を呑んだ。<br/>
+        　<br/>
+        （逃げるんだ、逃げ……）<br/>
+        <br/>
+        　だが、脚にはいつの間にか植物のツルが巻き付いていた。<br/>
+        　<br/>
+        　魔道士の杖から放たれた光が、$_1の体を包む。<br/>
+        　<br/>
+        　<br/>
+        「あああああ！！！」
+        <br>
+        <br>
+        <hr>
+        <h3 class="text_center"><span class=" text_emphasize"><a href="{% url 'base:status' %}" target="_blank"
+                                                                 rel="noopener noreferrer">★ステータスを確認する★</a></span>
+        </h3>
+        <h3 class="text_center"><span class="transition_link"><a
+        >Ver.0.11はここまでです。</a></span></h3>
     </div>
 {% endblock %}

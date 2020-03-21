@@ -7,6 +7,12 @@
 /*@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');*/
 
 /**********************************/
+/*all component common*/
+* {
+
+}
+
+/**********************************/
 /*application Title*/
 .App_title {
     font-family: "Times New Roman", sans-serif;
@@ -175,7 +181,7 @@
     margin-top: 6rem;
     padding: 4rem 2rem 2rem 2rem;
     width: 90%;
-    min-height: 70%;
+    min-height: 400px;
     overflow: auto;
     /* round the edge */
     border-radius: 20px;
@@ -205,8 +211,6 @@
 
 #Normal_text_area .transition_link {
     font-size: 150%;
-    /*todo 調整*/
-    /*border-bottom: 2px dotted #020402;*/
 }
 
 /**********************************/
