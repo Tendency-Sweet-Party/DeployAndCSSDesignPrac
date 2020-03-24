@@ -11,33 +11,21 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from imaplib import Debug
-from _socket import gethostname
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'aj_nnxxcvhmau6s6lzh(29o-kknqfm=_9ck$4*z863vyp_)j3%'
 
-# デバッグモード切替
-# ホスト名で判別
-try:
-    HOSTNAME = gethostname()
-except:
-    HOSTNAME = "localhost"
-# ホスト名が特定の物以外ならば本番環境
-if 'DESKTOP-5IGTA37' in HOSTNAME:
-    # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = True
-    ALLOWED_HOSTS = ['*', ]
-else:
-    DEBUG = False
-    ALLOWED_HOSTS = ['*', ]
+# デバッグモード初期値
+DEBUG = False
+
+# ALLOWED_HOSTS
+ALLOWED_HOSTS = ['*', ]
 
 # Application definition
 
@@ -98,20 +86,11 @@ WSGI_APPLICATION = 'DeployAndCSSDesignPrac.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-# ホスト名で環境切り替え
-if 'DESKTOP-5IGTA37' in HOSTNAME:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    import dj_database_url
+import dj_database_url
 
-    DATABASES = {
-        'default': dj_database_url.config()
-    }
+DATABASES = {
+    'default': dj_database_url.config()
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -159,3 +138,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # 画像ファイル用設定
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# switching environment
+try:
+    from DeployAndCSSDesignPrac.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    SECRET_KEY = os.environ['SECRET_KEY']
