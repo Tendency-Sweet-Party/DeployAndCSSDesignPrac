@@ -13,7 +13,7 @@
         {% block title %}（仮）主人公くんがいろんな変化させられる物語{% endblock %}
     </title>
 </head>
-<body id="Normal_body_background" class="Site">
+<body id={% block body_id %} "Normal_body_background"{% endblock %} class="Site">
 {% block header %}
     <header class="Site-header">
         <div class="ui stackable inverted menu fixed blue">

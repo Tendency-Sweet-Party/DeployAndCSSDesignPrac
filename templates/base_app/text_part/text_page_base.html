@@ -3,11 +3,7 @@
     <div id="Main" class="ui container">
         {#サイドバー#}
         <div class="ui grid stackable">
-            <div class="one wide column ">
-                <div class="Arrows_area">
-                    <a href="javascript:history.back()" class="Arrows_child"><i class="chevron circle left icon"></i>prev</a>
-                </div>
-            </div>
+            {% include 'base_app/included_parts/right_arrow.html' %}
             <div class="four wide column">
                 <div id="Summary_box">
                     {% block summary %}
@@ -21,12 +17,7 @@
                     {% endblock %}
                 </div>
             </div>
-            <div class="one wide column ">
-                <div class="Arrows_area">
-                    <a href="javascript:history.forward()" class="Arrows_child"><i
-                            class="chevron circle right icon"></i>next</a>
-                </div>
-            </div>
+            {% include 'base_app/included_parts/left_arrow.html' %}
         </div>
     </div>
 {% endblock %}
