@@ -1,5 +1,6 @@
 {% load static %}
 {% load staticfiles %}
+{% load show_site_property %}
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
     <link href="{% static 'css/my_custom.css' %}" rel="stylesheet">
     {% block css %}{% endblock %}
     <title>
-        {% block title %}（仮）主人公くんがいろんな変化させられる物語{% endblock %}
+        {% block title %}{% show_site_title %}{% endblock %}
     </title>
 </head>
 <body id={% block body_id %} "Normal_body_background"{% endblock %} class="Site">
@@ -18,7 +19,7 @@
     <header class="Site-header">
         <div class="ui stackable inverted menu fixed blue">
             <div class="item ">
-                <span class="App_title">（仮）主人公くんがいろんな変化させられる物語 ver.011</span>
+                <span class="App_title">{% show_site_title %} {% show_site_version %}</span>
             </div>
             {% if data.main_character_name %}
                 <a href="{% url 'base:status' %}" class="item" target="_blank" rel="noopener noreferrer">
@@ -49,7 +50,7 @@
         <div class="ui inverted stackable vertical  footer  fixed segment blue">
             <div class="ui container center aligned">
                 <div class="ui horizontal inverted small divided link list">
-                    <a class="item">© （仮）主人公くんがいろんな変化させられる物語</a>
+                    <a class="item">© {% show_site_title %}</a>
                     <a href="{% url 'base:quote' %}" class="item"><i class="linkify icon"></i>引用元・参考元</a>
                     <a href="https://github.com/Tendency-Sweet-Party/DeployAndCSSDesignPrac" class="item"><i
                             class="linkify icon"></i>ソースコード</a>

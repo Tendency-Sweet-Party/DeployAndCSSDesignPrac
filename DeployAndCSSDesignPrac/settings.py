@@ -139,6 +139,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# サイトのプロパティ
+SITE_TITLE = '（仮）主人公くんがいろんな変化させられる物語'
+SITE_VERSION = 'Ver.011'
+
 # switching environment
 try:
     from DeployAndCSSDesignPrac.local_settings import *
